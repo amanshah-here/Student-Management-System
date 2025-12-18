@@ -73,6 +73,10 @@ void addStudent(vector<Student>& students) {
     cin >> s.cgpa;
 
     students.push_back(s);
+    
+    sort(students.begin(), students.end(), [](auto& s1, auto& s2) {
+        return s1.roll < s2.roll;
+        });
     saveStudents(students);
     cout << "Student added successfully!\n";
 }
@@ -170,11 +174,38 @@ void updateStudent(vector<Student>& students) {
 
 //? Sort Student
 void sortStudents(vector<Student>& students) {
-    sort(students.begin(), students.end(), [](auto& s1, auto& s2) {
-        return s1.roll < s2.roll;
-        });
-    saveStudents(students);
-    cout << "\nStudents sorted successfully!\n";
+    int choice;
+    cout << "\nSort By -\n";
+    cout << "1. Roll\n";
+    cout << "2. Name\n";
+    cout << "3. CGPA\n";
+    cout << "Enter your choice:";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        sort(students.begin(), students.end(), [](auto& s1, auto& s2) {
+            return s1.roll < s2.roll;
+            });
+        cout << "\nStudents sorted successfully!\n";
+        break;
+    case 2:
+        sort(students.begin(), students.end(), [](auto& s1, auto& s2) {
+            return s1.name < s2.name;
+            });
+        cout << "\nStudents sorted successfully!\n";
+        break;
+    case 3:
+        sort(students.begin(), students.end(), [](auto& s1, auto& s2) {
+            return s1.cgpa < s2.cgpa;
+            });
+        cout << "\nStudents sorted successfully!\n";
+        break;
+    default:
+        cout << "\nInvalid Choice!\n";
+    }
+
 }
 
 
