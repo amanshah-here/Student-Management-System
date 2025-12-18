@@ -71,9 +71,13 @@ void addStudent(vector<Student>& students) {
 
     cout << "Enter CGPA: ";
     cin >> s.cgpa;
+    if (s.cgpa > 10.0) {
+        cout << "CGPA can't exceed 10...\n";
+        return;
+    }
 
     students.push_back(s);
-    
+
     sort(students.begin(), students.end(), [](auto& s1, auto& s2) {
         return s1.roll < s2.roll;
         });
